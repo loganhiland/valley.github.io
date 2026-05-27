@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MOOSE Sensitivity Analysis Tool</title>
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Plotly for interactive plots with error bars -->
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <h1>MOOSE Sensitivity Analysis Tool</h1>
+    <p>
+      <!-- Fill this in with a one-sentence project description. -->
+      Practical handoff page for sensitivity-analysis workflows, plots, and notes.
+    </p>
+  </header>
+
+  <main class="container">
+
+    <section class="card">
+      <h2>Project Purpose</h2>
+      <p>
+        <!-- Fill in: What problem is this project solving for your team? -->
+        This page summarizes the workflow and provides lightweight visualization tools
+        for interpreting sensitivity-analysis results.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Key Parameters</h2>
+
+      <!-- Add/remove rows as needed. -->
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Meaning</th>
+            <th>Expected Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Heat Capacity</td>
+            <td><!-- Fill in units/range. --> Thermal energy storage</td>
+            <td><!-- Fill in observation. --> Affects transient temperature response</td>
+          </tr>
+          <tr>
+            <td>Thermal Conductivity</td>
+            <td><!-- Fill in units/range. --> Heat diffusion</td>
+            <td><!-- Fill in observation. --> Affects spatial temperature gradients</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Interactive Sensitivity Viewer</h2>
+
+      <p>
+        <!-- Fill in what the slider controls. -->
+        Move the slider to select a precomputed heat-capacity case.
+      </p>
+
+      <label for="cpSlider">
+        Heat capacity case:
+        <span id="cpValue">Placeholder</span>
+      </label>
+
+      <!-- Update min/max/step in script.js after defining your cases. -->
+      <input id="cpSlider" type="range" min="0" max="2" step="1" value="0" />
+
+      <div class="viewer-grid">
+        <div>
+          <h3>Temperature Distribution</h3>
+
+          <!-- Replace placeholder images in figures/ with actual 2D renderings. -->
+          <img
+            id="temperatureImage"
+            class="result-image"
+            src="figures/temp_placeholder_low.png"
+            alt="Temperature distribution placeholder"
+          />
+
+          <p class="caption">
+            <!-- Fill in: what view/plane/timestep this represents. -->
+            Placeholder 2D temperature rendering.
+          </p>
+        </div>
+
+        <div>
+          <h3>Sensitivity Plot</h3>
+
+          <!-- Plotly graph is created in script.js -->
+          <div id="sensitivityPlot" class="plot"></div>
+
+          <p class="caption">
+            <!-- Fill in: what metric is plotted and what error bars mean. -->
+            Example plot with placeholder error bars.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Workflow Notes</h2>
+
+      <!-- Replace these bullets with your actual handoff notes. -->
+      <ul>
+        <li>Prepare or modify the MOOSE input file.</li>
+        <li>Run the parameter sweep.</li>
+        <li>Postprocess output into CSV/JSON format.</li>
+        <li>Export 2D temperature renderings for each parameter case.</li>
+        <li>Update <code>data/sensitivity_results.json</code> and <code>script.js</code>.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Common Issues</h2>
+
+      <!-- Add specific errors, causes, and fixes from your internship. -->
+      <table>
+        <thead>
+          <tr>
+            <th>Issue</th>
+            <th>Likely Cause</th>
+            <th>Fix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Simulation does not converge</td>
+            <td>Parameter value outside stable range</td>
+            <td>Check units, bounds, and timestep</td>
+          </tr>
+          <tr>
+            <td>Figure does not update</td>
+            <td>Missing image path or JSON data</td>
+            <td>Check file names in <code>script.js</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <!-- Fill in team/project ownership info. Avoid sensitive information if public. -->
+      Created as an internship handoff resource.
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
