@@ -1,117 +1,78 @@
 /*
-  MOOSE Sensitivity Analysis Tool
+  Slider-based image swapping.
 
-  This file controls interactivity:
-  - heat-capacity slider
-  - image switching
-  - Plotly graph updates
+  This is intentionally simple:
+  - no MATLAB running in browser
+  - no Plotly dependency
+  - no CSV loading required for the first version
 
-  Replace the placeholder cases below with your real parameter values,
-  image paths, mean values, and error bars.
+  Replace these placeholder cases with your real cases.
 */
 
-// Each object represents one precomputed MOOSE case.
-// Add more cases as needed.
 const cases = [
   {
     label: "Low Cp",
-    heatCapacity: 800,
-    image: "figures/temp_placeholder_low.png",
-    metricName: "Max Temperature",
-    metricValue: 520,
-    errorBar: 8
+    heatCapacity: "800 J/kg-K",
+    notes: "Placeholder low heat-capacity case.",
+    temperatureImage: "figures/temperature/temp_cp_low.png",
+    matlabPlotImage: "figures/matlab_plots/plot_cp_low.png"
   },
   {
     label: "Nominal Cp",
-    heatCapacity: 1000,
-    image: "figures/temp_placeholder_nominal.png",
-    metricName: "Max Temperature",
-    metricValue: 500,
-    errorBar: 6
+    heatCapacity: "1000 J/kg-K",
+    notes: "Placeholder nominal/reference heat-capacity case.",
+    temperatureImage: "figures/temperature/temp_cp_nominal.png",
+    matlabPlotImage: "figures/matlab_plots/plot_cp_nominal.png"
   },
   {
     label: "High Cp",
-    heatCapacity: 1200,
-    image: "figures/temp_placeholder_high.png",
-    metricName: "Max Temperature",
-    metricValue: 485,
-    errorBar: 7
+    heatCapacity: "1200 J/kg-K",
+    notes: "Placeholder high heat-capacity case.",
+    temperatureImage: "figures/temperature/temp_cp_high.png",
+    matlabPlotImage: "figures/matlab_plots/plot_cp_high.png"
   }
 ];
 
-const slider = document.getElementById("cpSlider");
-const cpValue = document.getElementById("cpValue");
+const slider = document.getElementById("caseSlider");
+const caseLabel = document.getElementById("caseLabel");
+const heatCapacityValue = document.getElementById("heatCapacityValue");
+const caseNotes = document.getElementById("caseNotes");
 const temperatureImage = document.getElementById("temperatureImage");
+const matlabPlotImage = document.getElementById("matlabPlotImage");
 
-// Make slider automatically match number of cases.
 slider.min = 0;
 slider.max = cases.length - 1;
 slider.step = 1;
 slider.value = 0;
 
-function updateViewer(index) {
-  const selectedCase = cases[index];
+function updateCase(index) {
+  const selected = cases[index];
 
-  // Update label above slider.
-  cpValue.textContent = `${selectedCase.label} (${selectedCase.heatCapacity} J/kg-K)`;
+  caseLabel.textContent = selected.label;
+  heatCapacityValue.textContent = selected.heatCapacity;
+  caseNotes.textContent = selected.notes;
 
-  // Update temperature image.
-  temperatureImage.src = selectedCase.image;
-  temperatureImage.alt = `Temperature distribution for ${selectedCase.label}`;
+  temperatureImage.src = selected.temperatureImage;
+  temperatureImage.alt = `Temperature distribution for ${selected.label}`;
 
-  // Update graph.
-  drawPlot(index);
+  matlabPlotImage.src = selected.matlabPlotImage;
+  matlabPlotImage.alt = `MATLAB sensitivity plot for ${selected.label}`;
 }
 
-function drawPlot(selectedIndex) {
-  const xValues = cases.map(c => c.heatCapacity);
-  const yValues = cases.map(c => c.metricValue);
-  const errorValues = cases.map(c => c.errorBar);
+// Optional: preload images so slider movement feels instant.
+function preloadImages() {
+  cases.forEach(caseItem => {
+    const tempImg = new Image();
+    tempImg.src = caseItem.temperatureImage;
 
-  const trace = {
-    x: xValues,
-    y: yValues,
-    type: "scatter",
-    mode: "lines+markers",
-    error_y: {
-      type: "data",
-      array: errorValues,
-      visible: true
-    },
-    name: "Sensitivity result"
-  };
-
-  // Highlight currently selected case.
-  const selectedTrace = {
-    x: [cases[selectedIndex].heatCapacity],
-    y: [cases[selectedIndex].metricValue],
-    type: "scatter",
-    mode: "markers",
-    marker: {
-      size: 14
-    },
-    name: "Selected case"
-  };
-
-  const layout = {
-    margin: { t: 30, r: 20, b: 60, l: 70 },
-    xaxis: {
-      title: "Heat Capacity [J/kg-K]"
-    },
-    yaxis: {
-      title: "Temperature Metric [K]"
-    }
-  };
-
-  Plotly.newPlot("sensitivityPlot", [trace, selectedTrace], layout, {
-    responsive: true
+    const plotImg = new Image();
+    plotImg.src = caseItem.matlabPlotImage;
   });
 }
 
-// Update when slider moves.
 slider.addEventListener("input", event => {
-  updateViewer(Number(event.target.value));
+  updateCase(Number(event.target.value));
 });
 
-// Initial page load.
-updateViewer(0);
+preloadImages();
+updateCase(0);

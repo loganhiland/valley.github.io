@@ -1,19 +1,51 @@
-# MOOSE Sensitivity Analysis Tool
+# MOOSE Sensitivity Analysis Viewer
 
-GitHub Pages site for documenting and visualizing MOOSE-tools sensitivity-analysis results.
+Barebones GitHub Pages site for displaying precomputed MOOSE sensitivity-analysis results.
 
-## Files
+This version is optimized for low latency by swapping precomputed images instead of generating plots in the browser.
 
-- `index.html` — main webpage content
-- `style.css` — visual styling
-- `script.js` — slider and Plotly interactivity
-- `data/sensitivity_results.json` — placeholder data format
-- `figures/` — placeholder temperature images
+## Recommended Repository Structure
 
-## How to use
+```text
+your-repo/
+├── index.html
+├── style.css
+├── script.js
+├── README.md
+├── data/
+│   └── case_summary.csv
+├── figures/
+│   ├── temperature/
+│   │   ├── temp_cp_low.png
+│   │   ├── temp_cp_nominal.png
+│   │   └── temp_cp_high.png
+│   └── matlab_plots/
+│       ├── plot_cp_low.png
+│       ├── plot_cp_nominal.png
+│       └── plot_cp_high.png
+└── matlab/
+    └── export_figures_placeholder.m
+```
 
-1. Replace placeholder text in `index.html`.
-2. Replace placeholder data in `script.js` or connect it to `data/sensitivity_results.json`.
-3. Replace placeholder images in `figures/` with actual MOOSE postprocessed temperature renders.
+## Workflow
 
-Do not commit proprietary, export-controlled, or sensitive internal data to a public repository.
+1. Run MOOSE cases.
+2. Process results in MATLAB.
+3. Export MATLAB plots as PNG or WebP.
+4. Export 2D temperature renderings.
+5. Put images in `figures/temperature/` and `figures/matlab_plots/`.
+6. Update the `cases` array in `script.js`.
+
+## GitHub Pages Settings
+
+Use:
+
+```text
+Settings → Pages → Deploy from branch
+Branch: main
+Folder: /root
+```
+
+## Notes
+
+Do not upload proprietary, export-controlled, or sensitive internal data to a public repository.

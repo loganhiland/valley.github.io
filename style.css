@@ -1,6 +1,6 @@
-/* 
-  MOOSE Sensitivity Analysis Tool
-  Edit this file to control visual style only.
+/*
+  Low-latency GitHub Pages template.
+  This version uses precomputed images rather than live plotting.
 */
 
 * {
@@ -27,7 +27,7 @@ body {
 }
 
 .container {
-  width: min(1100px, 92%);
+  width: min(1200px, 92%);
   margin: 2rem auto;
 }
 
@@ -47,16 +47,11 @@ body {
 
 .result-image {
   width: 100%;
-  min-height: 280px;
+  min-height: 320px;
   object-fit: contain;
   border: 1px solid #ddd;
   border-radius: 8px;
   background: #fafafa;
-}
-
-.plot {
-  width: 100%;
-  min-height: 360px;
 }
 
 .caption {
@@ -66,7 +61,17 @@ body {
 
 input[type="range"] {
   width: 100%;
-  margin: 1rem 0 1.5rem;
+  margin: 1rem 0;
+}
+
+.case-metadata {
+  background: #eef1f5;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.case-metadata p {
+  margin: 0.25rem 0;
 }
 
 table {
@@ -98,8 +103,7 @@ code {
   color: #666;
 }
 
-/* Mobile layout */
-@media (max-width: 800px) {
+@media (max-width: 850px) {
   .viewer-grid {
     grid-template-columns: 1fr;
   }

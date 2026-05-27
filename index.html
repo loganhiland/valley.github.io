@@ -4,127 +4,145 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>MOOSE Sensitivity Analysis Tool</title>
+  <title>MOOSE Sensitivity Analysis Viewer</title>
 
-  <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Plotly for interactive plots with error bars -->
-  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 </head>
 
 <body>
   <header class="site-header">
-    <h1>MOOSE Sensitivity Analysis Tool</h1>
+    <h1>MOOSE Sensitivity Analysis Viewer</h1>
     <p>
-      <!-- Fill this in with a one-sentence project description. -->
-      Practical handoff page for sensitivity-analysis workflows, plots, and notes.
+      <!-- Fill in: one-sentence description of the project. -->
+      Lightweight handoff tool for viewing precomputed MOOSE sensitivity-analysis results.
     </p>
   </header>
 
   <main class="container">
 
     <section class="card">
-      <h2>Project Purpose</h2>
+      <h2>Purpose</h2>
       <p>
-        <!-- Fill in: What problem is this project solving for your team? -->
-        This page summarizes the workflow and provides lightweight visualization tools
-        for interpreting sensitivity-analysis results.
+        <!-- Fill in: what this tool helps the team do after you leave. -->
+        This page is intended to help future users quickly inspect how selected parameters
+        affect temperature distributions and MATLAB-generated sensitivity plots.
       </p>
     </section>
 
     <section class="card">
-      <h2>Key Parameters</h2>
-
-      <!-- Add/remove rows as needed. -->
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Meaning</th>
-            <th>Expected Effect</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Heat Capacity</td>
-            <td><!-- Fill in units/range. --> Thermal energy storage</td>
-            <td><!-- Fill in observation. --> Affects transient temperature response</td>
-          </tr>
-          <tr>
-            <td>Thermal Conductivity</td>
-            <td><!-- Fill in units/range. --> Heat diffusion</td>
-            <td><!-- Fill in observation. --> Affects spatial temperature gradients</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="card">
-      <h2>Interactive Sensitivity Viewer</h2>
+      <h2>Selected Parameter</h2>
 
       <p>
-        <!-- Fill in what the slider controls. -->
-        Move the slider to select a precomputed heat-capacity case.
+        <!-- Fill in: explain what the slider controls. -->
+        Move the slider to switch between precomputed heat-capacity cases.
       </p>
 
-      <label for="cpSlider">
-        Heat capacity case:
-        <span id="cpValue">Placeholder</span>
+      <label for="caseSlider">
+        Current case:
+        <strong id="caseLabel">Loading...</strong>
       </label>
 
-      <!-- Update min/max/step in script.js after defining your cases. -->
-      <input id="cpSlider" type="range" min="0" max="2" step="1" value="0" />
+      <input id="caseSlider" type="range" min="0" max="2" step="1" value="0" />
+
+      <div class="case-metadata">
+        <p><strong>Heat capacity:</strong> <span id="heatCapacityValue"></span></p>
+        <p><strong>Case notes:</strong> <span id="caseNotes"></span></p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Precomputed Results</h2>
 
       <div class="viewer-grid">
         <div>
           <h3>Temperature Distribution</h3>
 
-          <!-- Replace placeholder images in figures/ with actual 2D renderings. -->
+          <!-- This image is swapped by script.js. -->
           <img
             id="temperatureImage"
             class="result-image"
-            src="figures/temp_placeholder_low.png"
-            alt="Temperature distribution placeholder"
+            src="figures/temperature/temp_cp_low.png"
+            alt="Temperature distribution"
           />
 
           <p class="caption">
-            <!-- Fill in: what view/plane/timestep this represents. -->
-            Placeholder 2D temperature rendering.
+            <!-- Fill in: view plane, timestep, units, etc. -->
+            Replace with a 2D temperature render exported from ParaView, MATLAB, or another postprocessor.
           </p>
         </div>
 
         <div>
-          <h3>Sensitivity Plot</h3>
+          <h3>MATLAB Sensitivity Plot</h3>
 
-          <!-- Plotly graph is created in script.js -->
-          <div id="sensitivityPlot" class="plot"></div>
+          <!-- This image is swapped by script.js. -->
+          <img
+            id="matlabPlotImage"
+            class="result-image"
+            src="figures/matlab_plots/plot_cp_low.png"
+            alt="MATLAB sensitivity plot"
+          />
 
           <p class="caption">
-            <!-- Fill in: what metric is plotted and what error bars mean. -->
-            Example plot with placeholder error bars.
+            <!-- Fill in: what the plot shows and what the error bars mean. -->
+            Replace with a MATLAB-generated plot, such as temperature metric vs. time with error bars.
           </p>
         </div>
       </div>
     </section>
 
     <section class="card">
+      <h2>Parameter Table</h2>
+
+      <!-- Keep this concise. Add only parameters/results that help future users interpret the cases. -->
+      <table>
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Heat Capacity</th>
+            <th>Temperature Image</th>
+            <th>MATLAB Plot</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Low Cp</td>
+            <td>800 J/kg-K</td>
+            <td><code>figures/temperature/temp_cp_low.png</code></td>
+            <td><code>figures/matlab_plots/plot_cp_low.png</code></td>
+          </tr>
+          <tr>
+            <td>Nominal Cp</td>
+            <td>1000 J/kg-K</td>
+            <td><code>figures/temperature/temp_cp_nominal.png</code></td>
+            <td><code>figures/matlab_plots/plot_cp_nominal.png</code></td>
+          </tr>
+          <tr>
+            <td>High Cp</td>
+            <td>1200 J/kg-K</td>
+            <td><code>figures/temperature/temp_cp_high.png</code></td>
+            <td><code>figures/matlab_plots/plot_cp_high.png</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
       <h2>Workflow Notes</h2>
 
-      <!-- Replace these bullets with your actual handoff notes. -->
-      <ul>
-        <li>Prepare or modify the MOOSE input file.</li>
-        <li>Run the parameter sweep.</li>
-        <li>Postprocess output into CSV/JSON format.</li>
-        <li>Export 2D temperature renderings for each parameter case.</li>
-        <li>Update <code>data/sensitivity_results.json</code> and <code>script.js</code>.</li>
-      </ul>
+      <!-- Replace these with your actual handoff steps. -->
+      <ol>
+        <li>Run the MOOSE parameter sweep.</li>
+        <li>Postprocess results in MATLAB.</li>
+        <li>Export MATLAB plots as PNG or WebP files.</li>
+        <li>Export matching 2D temperature-distribution images.</li>
+        <li>Place images in the correct <code>figures/</code> folders.</li>
+        <li>Update case definitions in <code>script.js</code>.</li>
+      </ol>
     </section>
 
     <section class="card">
       <h2>Common Issues</h2>
 
-      <!-- Add specific errors, causes, and fixes from your internship. -->
       <table>
         <thead>
           <tr>
@@ -135,14 +153,19 @@
         </thead>
         <tbody>
           <tr>
-            <td>Simulation does not converge</td>
-            <td>Parameter value outside stable range</td>
-            <td>Check units, bounds, and timestep</td>
+            <td>Slider changes text but not images</td>
+            <td>Wrong image filename or folder path</td>
+            <td>Check paths in <code>script.js</code></td>
           </tr>
           <tr>
-            <td>Figure does not update</td>
-            <td>Missing image path or JSON data</td>
-            <td>Check file names in <code>script.js</code></td>
+            <td>Images load slowly</td>
+            <td>Images are too large</td>
+            <td>Export smaller PNG/WebP files for web viewing</td>
+          </tr>
+          <tr>
+            <td>Plot looks blurry</td>
+            <td>MATLAB export resolution too low</td>
+            <td>Export at higher resolution, then compress if needed</td>
           </tr>
         </tbody>
       </table>
@@ -152,8 +175,8 @@
 
   <footer class="site-footer">
     <p>
-      <!-- Fill in team/project ownership info. Avoid sensitive information if public. -->
-      Created as an internship handoff resource.
+      <!-- Fill in ownership/contact info if appropriate. -->
+      Internship handoff resource.
     </p>
   </footer>
 
