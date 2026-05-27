@@ -1,0 +1,27 @@
+{
+  "description": "Placeholder sensitivity-analysis data. Replace with processed MOOSE results.",
+  "units": {
+    "heatCapacity": "J/kg-K",
+    "temperature": "K"
+  },
+  "cases": [
+    {
+      "label": "Low Cp",
+      "heatCapacity": 800,
+      "metricValue": 520,
+      "errorBar": 8
+    },
+    {
+      "label": "Nominal Cp",
+      "heatCapacity": 1000,
+      "metricValue": 500,
+      "errorBar": 6
+    },
+    {
+      "label": "High Cp",
+      "heatCapacity": 1200,
+      "metricValue": 485,
+      "errorBar": 7
+    }
+  ]
+}
