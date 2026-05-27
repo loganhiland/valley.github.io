@@ -1,0 +1,106 @@
+/* 
+  MOOSE Sensitivity Analysis Tool
+  Edit this file to control visual style only.
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  background: #f5f6f8;
+  color: #222;
+}
+
+.site-header {
+  padding: 2rem;
+  text-align: center;
+  background: #1f2937;
+  color: white;
+}
+
+.site-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 2rem auto;
+}
+
+.card {
+  background: white;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.viewer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.result-image {
+  width: 100%;
+  min-height: 280px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.plot {
+  width: 100%;
+  min-height: 360px;
+}
+
+.caption {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin: 1rem 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background: #eef1f5;
+}
+
+code {
+  background: #eef1f5;
+  padding: 0.1rem 0.25rem;
+  border-radius: 4px;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: #666;
+}
+
+/* Mobile layout */
+@media (max-width: 800px) {
+  .viewer-grid {
+    grid-template-columns: 1fr;
+  }
+}
