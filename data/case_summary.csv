@@ -1,0 +1,4 @@
+case,heat_capacity_J_per_kg_K,temperature_image,matlab_plot,notes
+Low Cp,800,figures/temperature/temp_cp_low.png,figures/matlab_plots/plot_cp_low.png,Placeholder low heat-capacity case
+Nominal Cp,1000,figures/temperature/temp_cp_nominal.png,figures/matlab_plots/plot_cp_nominal.png,Placeholder nominal/reference case
+High Cp,1200,figures/temperature/temp_cp_high.png,figures/matlab_plots/plot_cp_high.png,Placeholder high heat-capacity case
