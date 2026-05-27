@@ -25,7 +25,7 @@
       <p>
         <!-- Fill in: what this tool helps the team do after you leave. -->
         This page is intended to help future users quickly inspect how selected parameters
-        affect temperature distributions and MATLAB-generated sensitivity plots.
+        affect temperature distributions and matplotlib-generated sensitivity plots.
       </p>
     </section>
 
@@ -67,24 +67,24 @@
 
           <p class="caption">
             <!-- Fill in: view plane, timestep, units, etc. -->
-            Replace with a 2D temperature render exported from ParaView, MATLAB, or another postprocessor.
+            Replace with a 2D temperature render exported from ParaView, matplotlib, or another postprocessor.
           </p>
         </div>
 
         <div>
-          <h3>MATLAB Sensitivity Plot</h3>
+          <h3>matplotlib Sensitivity Plot</h3>
 
           <!-- This image is swapped by script.js. -->
           <img
-            id="matlabPlotImage"
+            id="matplotlibPlotImage"
             class="result-image"
-            src="figures/matlab_plots/plot_cp_low.png"
-            alt="MATLAB sensitivity plot"
+            src="figures/matplotlib_plots/plot_cp_low.png"
+            alt="matplotlib sensitivity plot"
           />
 
           <p class="caption">
             <!-- Fill in: what the plot shows and what the error bars mean. -->
-            Replace with a MATLAB-generated plot, such as temperature metric vs. time with error bars.
+            Replace with a matplotlib-generated plot, such as temperature metric vs. time with error bars.
           </p>
         </div>
       </div>
@@ -100,7 +100,7 @@
             <th>Case</th>
             <th>Heat Capacity</th>
             <th>Temperature Image</th>
-            <th>MATLAB Plot</th>
+            <th>matplotlib Plot</th>
           </tr>
         </thead>
         <tbody>
@@ -132,8 +132,8 @@
       <!-- Replace these with your actual handoff steps. -->
       <ol>
         <li>Run the MOOSE parameter sweep.</li>
-        <li>Postprocess results in MATLAB.</li>
-        <li>Export MATLAB plots as PNG or WebP files.</li>
+        <li>Postprocess results in matplotlib.</li>
+        <li>Export matplotlib plots as PNG or WebP files.</li>
         <li>Export matching 2D temperature-distribution images.</li>
         <li>Place images in the correct <code>figures/</code> folders.</li>
         <li>Update case definitions in <code>script.js</code>.</li>
@@ -164,7 +164,7 @@
           </tr>
           <tr>
             <td>Plot looks blurry</td>
-            <td>MATLAB export resolution too low</td>
+            <td>matplotlib export resolution too low</td>
             <td>Export at higher resolution, then compress if needed</td>
           </tr>
         </tbody>
